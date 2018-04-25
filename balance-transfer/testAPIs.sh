@@ -24,18 +24,6 @@ ORG1_TOKEN=$(echo $ORG1_TOKEN | jq ".token" | sed "s/\"//g")
 echo
 echo "ORG1 token is $ORG1_TOKEN"
 echo
-echo "POST request Enroll on Org2 ..."
-echo
-ORG2_TOKEN=$(curl -s -X POST \
-  http://localhost:4000/users \
-  -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=Barry&orgName=org2')
-echo $ORG2_TOKEN
-ORG2_TOKEN=$(echo $ORG2_TOKEN | jq ".token" | sed "s/\"//g")
-echo
-echo "ORG2 token is $ORG2_TOKEN"
-echo
-echo
 echo "POST request Create channel  ..."
 echo
 curl -s -X POST \
@@ -44,7 +32,7 @@ curl -s -X POST \
   -H "content-type: application/json" \
   -d '{
 	"channelName":"mychannel",
-	"channelConfigPath":"../artifacts/channel/mychannel.tx"
+	"channelConfigPath":"../artifacts/channel/channel.tx"
 }'
 echo
 echo
@@ -56,19 +44,7 @@ curl -s -X POST \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json" \
   -d '{
-	"peers": ["peer1","peer2"]
-}'
-echo
-echo
-
-echo "POST request Join channel on Org2"
-echo
-curl -s -X POST \
-  http://localhost:4000/channels/mychannel/peers \
-  -H "authorization: Bearer $ORG2_TOKEN" \
-  -H "content-type: application/json" \
-  -d '{
-	"peers": ["peer1","peer2"]
+	"peers": ["peer1"]
 }'
 echo
 echo
@@ -80,30 +56,14 @@ curl -s -X POST \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json" \
   -d '{
-	"peers": ["peer1", "peer2"],
+	"peers": ["peer1"],
 	"chaincodeName":"mycc",
 	"chaincodePath":"github.com/example_cc",
 	"chaincodeVersion":"v0"
 }'
 echo
 echo
-
-
-echo "POST Install chaincode on Org2"
-echo
-curl -s -X POST \
-  http://localhost:4000/chaincodes \
-  -H "authorization: Bearer $ORG2_TOKEN" \
-  -H "content-type: application/json" \
-  -d '{
-	"peers": ["peer1","peer2"],
-	"chaincodeName":"mycc",
-	"chaincodePath":"github.com/example_cc",
-	"chaincodeVersion":"v0"
-}'
-echo
-echo
-
+ 
 echo "POST instantiate chaincode on peer1 of Org1"
 echo
 curl -s -X POST \
@@ -118,7 +78,7 @@ curl -s -X POST \
 echo
 echo
 
-echo "POST invoke chaincode on peers of Org1 and Org2"
+echo "POST invoke chaincode on peers of Org1 "
 echo
 TRX_ID=$(curl -s -X POST \
   http://localhost:4000/channels/mychannel/chaincodes/mycc \
