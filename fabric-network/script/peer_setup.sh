@@ -1,14 +1,12 @@
 #!/bin/bash
 UP_DOWN="$1"
-COMPOSE_FILE=docker-compose-peer.yaml
+COMPOSE_FILE=/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/docker-compose-peer.yaml
 function printHelp () {
         echo "Usage: ./orderer_setup <up|down> arguments must be in order."
 }
 function networkUp () {
-        echo "---- start couchdb service ----"
-        docker run -p 5984:5984 -d --name couchdb -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password -v ~/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/couchdb:/opt/couchdb/data klaemo/couchdb 2>&1
         echo "---- start peer node ----"
-        docker-compose -f $COMPOSE_FILE up 2>&1
+        docker-compose -f $COMPOSE_FILE up >/dev/null 2>&1
 }
 function clearContainers () {
         CONTAINER_IDS=$(docker ps -aq)

@@ -1,18 +1,18 @@
 {
 	"network-config": {
 		"orderer": {
-			"url": "grpcs://192.168.0.11:7050",
+			"url": "grpcs://139.198.177.68:7050",
 			"server-hostname": "orderer.example.com",
 			"tls_cacerts": "../artifacts/channel/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt"
 		},
 		"org1": {
 			"name": "peerOrg1",
 			"mspid": "Org1MSP",
-			"ca": "http://192.168.0.11:7054",
+			"ca": "http://139.198.177.68:7054",
 			"peers": {
 				"peer1": {
-					"requests": "grpcs://localhost:7051",
-					"events": "grpcs://localhost:7053",
+					"requests": "grpcs://139.198.177.68:7051",
+					"events": "grpcs://139.198.177.68:7053",
 					"server-hostname": "peer0.org1.example.com",
 					"tls_cacerts": "../artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
 				}

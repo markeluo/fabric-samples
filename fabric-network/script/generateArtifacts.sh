@@ -1,10 +1,4 @@
 #!/bin/bash +x
-#
-# Copyright IBM Corp. All Rights Reserved.
-#
-# SPDX-License-Identifier: Apache-2.0
-#
-
 
 #set -e
 
@@ -27,13 +21,13 @@ function replacePrivateKey () {
 		OPTS="-i"
 	fi
 
-	cp docker-compose-orderer-tmp.yaml docker-compose-orderer.yaml
+	cp /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/docker-compose-orderer-tmp.yaml /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/docker-compose-orderer.yaml
 
         CURRENT_DIR=$PWD
-        cd crypto-config/peerOrganizations/org1.example.com/ca/
+        cd /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config/peerOrganizations/org1.example.com/ca/
         PRIV_KEY=$(ls *_sk)
         cd $CURRENT_DIR
-        sed $OPTS "s/CA0_PRIVATE_KEY/${PRIV_KEY}/g" docker-compose-orderer.yaml
+        sed $OPTS "s/CA0_PRIVATE_KEY/${PRIV_KEY}/g" /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/docker-compose-orderer.yaml
 }
 
 ## Generates Org certs using cryptogen tool
@@ -51,7 +45,7 @@ function generateCerts (){
 	echo "##########################################################"
 	echo "##### Generate certificates using cryptogen tool #########"
 	echo "##########################################################"
-	$CRYPTOGEN generate --config=./crypto-config.yaml
+	$CRYPTOGEN generate --config=/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config.yaml
 	echo
 }
 
@@ -71,19 +65,19 @@ function generateChannelArtifacts() {
 	echo "##########################################################"
 	# Note: For some unknown reason (at least for now) the block file can't be
 	# named orderer.genesis.block or the orderer will fail to launch!
-	$CONFIGTXGEN -profile TwoOrgsOrdererGenesis -outputBlock ./channel-artifacts/genesis.block
+	$CONFIGTXGEN -profile TwoOrgsOrdererGenesis -outputBlock /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/channel-artifacts/genesis.block
 
 	echo
 	echo "#################################################################"
 	echo "### Generating channel configuration transaction 'channel.tx' ###"
 	echo "#################################################################"
-	$CONFIGTXGEN -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID $CHANNEL_NAME
+	$CONFIGTXGEN -profile TwoOrgsChannel -outputCreateChannelTx /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/channel-artifacts/channel.tx -channelID $CHANNEL_NAME
 
 	echo
 	echo "#################################################################"
 	echo "#######    Generating anchor peer update for Org1MSP   ##########"
 	echo "#################################################################"
-	$CONFIGTXGEN -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org1MSP
+	$CONFIGTXGEN -profile TwoOrgsChannel -outputAnchorPeersUpdate /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/channel-artifacts/Org1MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org1MSP
 	echo
 }
 

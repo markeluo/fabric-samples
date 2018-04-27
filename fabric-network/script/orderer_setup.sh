@@ -1,11 +1,35 @@
 #!/bin/bash
 UP_DOWN="$1"
-COMPOSE_FILE=docker-compose-orderer.yaml
+COMPOSE_FILE=/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/docker-compose-orderer.yaml
 function printHelp () {
         echo "Usage: ./orderer_setup <up|down> arguments must be in order."
 }
 function networkUp () {
-        docker-compose -f $COMPOSE_FILE up 2>&1
+        if [ -d "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/cahome" ]; then
+                echo "cahome directory already exists."
+        else
+                mkdir "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/cahome"
+        fi
+
+        if [ -d "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config" ]; then
+                echo "crypto-config directory already exists."
+        else
+                #Generate all the artifacts that includes org certs, orderer genesis block,
+                # channel configuration transaction
+                source /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/generateArtifacts.sh
+
+                ##scp orderer ca&channel fiels to peer nodes
+                scpfiletopeerfun
+        fi
+
+        docker-compose -f $COMPOSE_FILE up  >/dev/null 2>&1
+}
+function scpfiletopeerfun(){
+        if [ -d "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config" ]; then
+                source /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/scpfiletopeer.sh
+        else
+                echo "crypto-config directory already exists."
+        fi
 }
 function clearContainers () {
         CONTAINER_IDS=$(docker ps -aq)

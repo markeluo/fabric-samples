@@ -53,7 +53,7 @@ var instantiateChaincode = function(channelName, chaincodeName, chaincodeVersion
 
 		if (functionName)
 			request.fcn = functionName;
-
+			
 		return channel.sendInstantiateProposal(request);
 	}, (err) => {
 		logger.error('Failed to initialize the channel');

@@ -218,7 +218,8 @@ var getRegisteredUsers = function(username, userOrg, isJson) {
 					member = adminUserObj;
 					return caClient.register({
 						enrollmentID: username,
-						affiliation: userOrg + '.department1'
+						affiliation: userOrg + '.department1',
+						role:'client'
 					}, member);
 				}).then((secret) => {
 					enrollmentSecret = secret;
