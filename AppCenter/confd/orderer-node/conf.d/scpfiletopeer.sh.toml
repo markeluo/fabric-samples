@@ -1,0 +1,7 @@
+[template]
+  src = "scpfiletopeer.sh.tmpl"
+  dest = "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/scpfiletopeer.sh"
+  keys = [
+      "/",
+  ]
+reload_cmd = ""

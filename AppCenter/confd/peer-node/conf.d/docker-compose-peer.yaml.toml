@@ -1,0 +1,7 @@
+[template]
+  src = "docker-compose-peer.yaml.tmpl"
+  dest = "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/docker-compose-peer.yaml"
+  keys = [
+      "/",
+  ]
+reload_cmd = "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/peer-restart.sh"

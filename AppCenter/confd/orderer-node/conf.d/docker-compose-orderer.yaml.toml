@@ -1,0 +1,7 @@
+[template]
+  src = "docker-compose-orderer.yaml.tmpl"
+  dest = "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/docker-compose-orderer-tmp.yaml"
+  keys = [
+      "/",
+  ]
+reload_cmd = "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/orderer-restart.sh"

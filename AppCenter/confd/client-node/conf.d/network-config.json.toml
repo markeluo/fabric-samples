@@ -1,0 +1,7 @@
+[template]
+  src = "network-config.json.tmpl"
+  dest = "/opt/fabric-samples/balance-transfer/app/network-config.json"
+  keys = [
+      "/",
+  ]
+reload_cmd = "/opt/fabric-samples/balance-transfer/client-restart.sh"

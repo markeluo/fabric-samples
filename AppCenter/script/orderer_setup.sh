@@ -1,6 +1,10 @@
 #!/bin/bash
 UP_DOWN="$1"
 COMPOSE_FILE=/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/docker-compose-orderer.yaml
+DOCKER_VERSION=`/usr/local/bin/docker-compose -version 2>&1 |awk 'NR==1{ gsub(/"/,""); print $3 }'`
+if [ "$DOCKER_VERSION" != "1.17.0," ]; then
+    sleep 5
+fi
 function printHelp () {
         echo "Usage: ./orderer_setup <up|down> arguments must be in order."
 }
@@ -16,13 +20,13 @@ function networkUp () {
         else
                 #Generate all the artifacts that includes org certs, orderer genesis block,
                 # channel configuration transaction
-                source /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/generateArtifacts.sh
-
+                source /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/generateArtifacts.sh && \
+                sleep 2 && \
                 ##scp orderer ca&channel fiels to peer nodes
                 scpfiletopeerfun
         fi
 
-        docker-compose -f $COMPOSE_FILE up  >/dev/null 2>&1
+        /usr/local/bin/docker-compose -f $COMPOSE_FILE up
 }
 function scpfiletopeerfun(){
         if [ -d "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config" ]; then
@@ -40,7 +44,7 @@ function clearContainers () {
         fi
 }
 function networkDown () {
-        docker-compose -f $COMPOSE_FILE down
+        /usr/local/bin/docker-compose -f $COMPOSE_FILE down
         #Cleanup the chaincode containers
         clearContainers
 }

@@ -1,0 +1,11 @@
+#!/bin/bash +x
+{{range $dir := lsdir "/hosts/peer"}}{{$ip := printf "/hosts/peer/%s/ip" $dir}}
+scp -r /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config root@{{getv $ip}}:/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/
+scp -r /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/channel-artifacts root@{{getv $ip}}:/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/ && \
+sleep 1 && \
+{{end}}
+
+{{range $dir := lsdir "/hosts/client"}}{{$ip := printf "/hosts/client/%s/ip" $dir}}
+scp -r /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config root@{{getv $ip}}:/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/
+scp -r /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/channel-artifacts root@{{getv $ip}}:/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/
+{{end}}

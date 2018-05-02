@@ -1,0 +1,179 @@
+{
+    "name": {{cluster.name}},
+    "description": {{cluster.description}},
+    "vxnet": {{cluster.vxnet}},
+    "nodes": [{
+        "role":"orderer",
+        "container": {
+            "type": "kvm",
+            "zone": "sh1a",
+            "image": "img-ci78hx9p"
+        },
+        "instance_class": {{cluster.orderer.instance_class}},
+        "count": {{cluster.orderer.count}},
+        "cpu": {{cluster.orderer.cpu}},
+        "memory": {{cluster.orderer.memory}},
+        "volume": {
+          "size": {{cluster.orderer.volume_size}},
+          "mount_point": "/data",
+          "mount_options": "defaults,noatime",
+          "filesystem": "ext4"
+        },
+        "services": {
+            "init": {
+                "cmd": "systemctl restart rsyslog;mkdir -p /data/webapps;rsync -aqxP /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/ /data/webapps"
+            },
+            "start": {
+                "order":1,
+                "cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/orderer-start.sh"
+            },
+            "stop": {
+                "cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/orderer-stop.sh"
+            },
+            "restart": {
+                "cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/orderer-restart.sh"
+            }
+        },
+        "advanced_actions": ["change_vxnet", "scale_horizontal"],
+         "vertical_scaling_policy": "sequential",
+         "health_check": {
+             "enable": true,
+             "interval_sec": 60,
+             "timeout_sec": 10,
+             "action_timeout_sec": 30,
+             "healthy_threshold": 2,
+             "unhealthy_threshold": 2,
+             "check_cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/orderer-check.sh",
+             "action_cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/orderer-action.sh"
+         },
+         "monitor": {
+             "enable":false,
+             "cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/orderer-get-monitor.sh",
+             "items": {
+               "heap_usage": {
+                   "unit": "%"
+               },
+               "MessagesInPerSec_1MinuteRate": {
+                   "unit": "count/sec"
+               },
+               "BytesInPerSec_1MinuteRate": {
+                   "unit": "bps"
+               },
+               "BytesOutPerSec_1MinuteRate": {
+                   "unit": "bps"
+               },
+             "Replica_MaxLag": {
+                 "unit": "count"
+             },
+              "IsrExpandsPerSec_1MinuteRate": {
+                   "unit": "count/sec"
+               },
+               "KafkaController_ActiveControllerCount": {
+                   "unit": "count"
+               },
+               "KafkaController_OfflinePartitionsCount": {
+                   "unit": "count"
+               }
+             },
+             "groups": {
+                 "JVM Heap":  ["heap_usage"],
+                 "Message Throughput": ["MessagesInPerSec_1MinuteRate"],
+                 "Data Throughput": ["BytesInPerSec_1MinuteRate", "BytesOutPerSec_1MinuteRate"],
+                 "Replica MaxLag": ["Replica_MaxLag"],
+                 "Isr Expansion Rate": ["IsrExpandsPerSec_1MinuteRate"],
+                 "Management Statistics": ["KafkaController_ActiveControllerCount","KafkaController_OfflinePartitionsCount"]
+             },
+             "display": ["JVM Heap", "Message Throughput", "Data Throughput","Replica MaxLag","Isr Expansion Rate","Management Statistics"],
+             "alarm": ["heap_usage","Replica_MaxLag"]
+         }
+    },
+    {
+        "role":"peer",
+        "container": {
+            "type": "kvm",
+            "zone": "sh1a",
+            "image": "img-xdmd7afz"
+        },
+        "instance_class": {{cluster.peer.instance_class}},
+        "count": {{cluster.peer.count}},
+        "cpu": {{cluster.peer.cpu}},
+        "memory": {{cluster.peer.memory}},
+        "volume": {
+            "size": {{cluster.peer.volume_size}},
+            "mount_point": "/data",
+            "mount_options": "defaults,noatime",
+            "filesystem": "ext4"
+        },
+        "services": {
+            "init": {
+                "cmd": "systemctl restart rsyslog;mkdir -p /data/webapps;rsync -aqxP /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/ /data/webapps"
+            },
+            "start": {
+                "order":2,
+                "cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/peer-start.sh"
+            },
+            "stop": {
+                "cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/peer-stop.sh"
+            },
+            "restart":{
+                "cmd":"/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/peer-restart.sh"
+            }
+        },
+        "advanced_actions": ["change_vxnet", "scale_horizontal"],
+        "health_check": {
+            "enable": true,
+            "interval_sec": 60,
+            "timeout_sec": 10,
+            "action_timeout_sec": 30,
+            "healthy_threshold": 2,
+            "unhealthy_threshold": 2,
+            "check_cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/peer-check.sh",
+            "action_cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/peer-action.sh"
+        }
+    },
+    {
+        "role":"client",
+        "container": {
+            "type": "kvm",
+            "zone": "sh1a",
+            "image": "img-idmek3ke"
+        },
+        "instance_class": {{cluster.client.instance_class}},
+        "count": {{cluster.client.count}},
+        "cpu": {{cluster.client.cpu}},
+        "memory": {{cluster.client.memory}},
+        "volume": {
+            "size": {{cluster.client.volume_size}},
+            "mount_point": "/data",
+            "mount_options": "defaults,noatime",
+            "filesystem": "ext4"
+        },
+        "services": {
+            "init": {
+                "cmd": "systemctl restart rsyslog;mkdir -p /data/webapps;rsync -aqxP /opt/fabric-samples/ /data/webapps"
+            },
+            "start": {
+                "order":3,
+                "cmd": "/opt/fabric-samples/balance-transfer/client-start.sh"
+            },
+            "stop": {
+                "cmd": "/opt/fabric-samples/balance-transfer/client-stop.sh"
+            },
+            "restart":{
+                "cmd":"/opt/fabric-samples/balance-transfer/client-restart.sh"
+            }
+        },
+        "advanced_actions": ["change_vxnet", "scale_horizontal"],
+        "health_check": {
+            "enable": true,
+            "interval_sec": 60,
+            "timeout_sec": 10,
+            "action_timeout_sec": 30,
+            "healthy_threshold": 2,
+            "unhealthy_threshold": 2,
+            "check_cmd": "/opt/fabric-samples/balance-transfer/client-check.sh",
+            "action_cmd": "/opt/fabric-samples/balance-transfer/client-action.sh"
+        }
+    }
+    ]
+}
