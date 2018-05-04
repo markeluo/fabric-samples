@@ -1,5 +1,5 @@
 [template]
-  src = "network-config.json.tmpl"
+  src = "config.json.tmpl"
   dest = "/opt/fabric-samples/blockchain-explorer/config.json"
   keys = [
       "/",

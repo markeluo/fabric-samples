@@ -7,7 +7,7 @@
         "container": {
             "type": "kvm",
             "zone": "sh1a",
-            "image": "img-3lknm33q"
+            "image": "img-fx9r9x7x"
         },
         "instance_class": {{cluster.orderer.instance_class}},
         "count": {{cluster.orderer.count}},
@@ -92,7 +92,7 @@
         "container": {
             "type": "kvm",
             "zone": "sh1a",
-            "image": "img-6ebmnred"
+            "image": "img-6zclq8hw"
         },
         "instance_class": {{cluster.peer.instance_class}},
         "count": {{cluster.peer.count}},
@@ -136,7 +136,7 @@
         "container": {
             "type": "kvm",
             "zone": "sh1a",
-            "image": "img-05c1nwg5"
+            "image": "img-bdmaqfiw"
         },
         "instance_class": {{cluster.client.instance_class}},
         "count": {{cluster.client.count}},
@@ -154,13 +154,13 @@
             },
             "start": {
                 "order":3,
-                "cmd": "/opt/fabric-samples/balance-transfer/client-start.sh"
+                "cmd": "/opt/fabric-samples/blockchain-explorer/client-start.sh"
             },
             "stop": {
-                "cmd": "/opt/fabric-samples/balance-transfer/client-stop.sh"
+                "cmd": "/opt/fabric-samples/blockchain-explorer/client-stop.sh"
             },
             "restart":{
-                "cmd":"/opt/fabric-samples/balance-transfer/client-restart.sh"
+                "cmd":"/opt/fabric-samples/blockchain-explorer/client-restart.sh"
             }
         },
         "advanced_actions": ["change_vxnet", "scale_horizontal"],
@@ -171,8 +171,8 @@
             "action_timeout_sec": 30,
             "healthy_threshold": 2,
             "unhealthy_threshold": 2,
-            "check_cmd": "/opt/fabric-samples/balance-transfer/client-check.sh",
-            "action_cmd": "/opt/fabric-samples/balance-transfer/client-action.sh"
+            "check_cmd": "/opt/fabric-samples/blockchain-explorer/client-check.sh",
+            "action_cmd": "/opt/fabric-samples/blockchain-explorer/client-action.sh"
         }
     }
     ]
