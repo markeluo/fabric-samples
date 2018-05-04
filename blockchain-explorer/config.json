@@ -7,11 +7,11 @@
 				"requests": "grpcs://192.168.0.12:7051",
 				"events": "grpcs://192.168.0.12:7053",
 				"server-hostname": "peer0.org1.example.com",
-				"tls_cacerts": "/Users/luowanli/vscode/fabric/blockchain-explorer/network_config/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+				"tls_cacerts": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
 			},
 			"admin": {
-				"key": "/Users/luowanli/vscode/fabric/blockchain-explorer/network_config/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore",
-				"cert": "/Users/luowanli/vscode/fabric/blockchain-explorer/network_config/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts"
+				"key": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore",
+				"cert": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts"
 			}
 		}
 	},
