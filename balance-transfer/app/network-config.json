@@ -11,10 +11,22 @@
 			"ca": "http://139.198.177.68:7054",
 			"peers": {
 				"peer1": {
+					"requests": "grpcs://139.198.177.68:8051",
+					"events": "grpcs://139.198.177.68:8053",
+					"server-hostname": "peer1.org1.example.com",
+					"tls_cacerts": "../artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
+				},
+				"peer0": {
 					"requests": "grpcs://139.198.177.68:7051",
 					"events": "grpcs://139.198.177.68:7053",
 					"server-hostname": "peer0.org1.example.com",
 					"tls_cacerts": "../artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+				},
+				"peer2": {
+					"requests": "grpcs://139.198.177.68:9051",
+					"events": "grpcs://139.198.177.68:9053",
+					"server-hostname": "peer2.org1.example.com",
+					"tls_cacerts": "../artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/tls/ca.crt"
 				}
 			},
 			"admin": {

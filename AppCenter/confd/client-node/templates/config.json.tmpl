@@ -1,0 +1,33 @@
+{
+	"network-config": {
+		"org1": {
+			"name": "peerOrg1",
+			"mspid": "Org1MSP",
+			{{range $index,$dir := lsdir "/hosts/peer/"}}{{$sid := printf "/hosts/peer/%s/sid" $dir}}{{$ip := printf "/hosts/peer/%s/ip" $dir}}
+			"peer{{sub (getv $sid) 1}}":{
+				"requests": "grpcs://{{getv $ip}}:7051",
+				"events": "grpcs://{{getv $ip}}:7053",
+				"server-hostname": "peer{{sub (getv $sid) 1}}.org1.example.com",
+				"tls_cacerts": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config/peerOrganizations/org1.example.com/peers/peer{{sub (getv $sid) 1}}.org1.example.com/tls/ca.crt"
+			},
+			{{end}}
+			"admin": {
+				"key": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore",
+				"cert": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts"
+			}
+		}
+	},
+	"host": "localhost",
+	"port": "8080",
+	"channel": "mychannel",
+	"keyValueStore": "/tmp/fabric-client-kvs",
+	"eventWaitTime": "30000",
+	"pg": {
+		"host": "139.198.177.68",
+		"port": "5432",
+		"database": "fabricexplorer",
+		"username": "root",
+		"passwd": "qingcloud1234"
+	},
+	"license": "Apache-2.0"
+}

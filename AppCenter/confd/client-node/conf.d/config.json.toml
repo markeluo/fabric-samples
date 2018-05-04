@@ -1,0 +1,7 @@
+[template]
+  src = "network-config.json.tmpl"
+  dest = "/opt/fabric-samples/blockchain-explorer/config.json"
+  keys = [
+      "/",
+  ]
+reload_cmd = "/opt/fabric-samples/blockchain-explorer/client-restart.sh"

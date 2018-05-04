@@ -3,25 +3,26 @@
 		"orderer": {
 			"url": "grpcs://{{range $dir := lsdir "/hosts/orderer/"}}{{$ip := printf "/hosts/orderer/%s/ip" $dir}}{{getv $ip}}{{end}}:7050",
 			"server-hostname": "orderer.example.com",
-			"tls_cacerts": "/opt/fabric-samples/balance-transfer/artifacts/channel/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt"
+			"tls_cacerts": "../artifacts/channel/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt"
 		},
 		"org1": {
 			"name": "peerOrg1",
 			"mspid": "Org1MSP",
 			"ca": "http://{{range $dir := lsdir "/hosts/orderer/"}}{{$ip := printf "/hosts/orderer/%s/ip" $dir}}{{getv $ip}}{{end}}:7054",
 			"peers": {
-                {{range $dir := lsdir "/hosts/peer"}}{{$sid := printf "/hosts/peer/%s/sid" $dir}}{{$ip := printf "/hosts/peer/%s/ip" $dir}}
+				{{$peers := lsdir "/hosts/peer/"}}{{$peer_size := len $peers}}
+                {{range $index,$dir := lsdir "/hosts/peer/"}}{{$mindex := sub (sub $peer_size $index) 1}}{{$sid := printf "/hosts/peer/%s/sid" $dir}}{{$ip := printf "/hosts/peer/%s/ip" $dir}}
                 "peer{{sub (getv $sid) 1}}":{
                     "requests": "grpcs://{{getv $ip}}:7051",
 					"events": "grpcs://{{getv $ip}}:7053",
 					"server-hostname": "peer{{sub (getv $sid) 1}}.org1.example.com",
-					"tls_cacerts": "/opt/fabric-samples/balance-transfer/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer{{sub (getv $sid) 1}}.org1.example.com/tls/ca.crt"
-                },
+					"tls_cacerts": "../artifacts/channel/crypto-config/peerOrganizations/org1.example.com/peers/peer{{sub (getv $sid) 1}}.org1.example.com/tls/ca.crt"
+                }{{if $mindex}},{{end}}
                 {{end}}
 			},
 			"admin": {
-				"key": "/opt/fabric-samples/balance-transfer/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore",
-				"cert": "/opt/fabric-samples/balance-transfer/artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts"
+				"key": "../artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore",
+				"cert": "../artifacts/channel/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts"
 			}
 		}
 	}
