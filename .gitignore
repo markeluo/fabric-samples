@@ -30,3 +30,4 @@ fabcar/node_modules/
 balance-transfer/.DS_Store
 balance-transfer/node_modules/*
 balance-transfer/artifacts/channel/*
+AppCenter/config/test.tar.gz
