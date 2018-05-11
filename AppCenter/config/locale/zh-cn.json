@@ -42,5 +42,11 @@
     "KafkaController_OfflinePartitionsCount": "离线分区数",
     "bps": "bps",
      "orderer nodes":"orderer 节点",
-     "peer node":"peer 节点"
+     "peer node":"peer 节点",
+     "The Client server port":"客户端服务端口",
+     "The Client DataBase Host Address":"数据库地址",
+     "The Client DataBase port":"数据库端口",
+     "The Client DataBase name":"数据库名称",
+     "The Client DataBase user name":"数据库用户名",
+     "The Client DataBase password":"数据库密码"
   }

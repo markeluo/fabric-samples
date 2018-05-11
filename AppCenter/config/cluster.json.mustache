@@ -130,7 +130,7 @@
         "container": {
             "type": "kvm",
             "zone": "sh1a",
-            "image": "img-w1y00rmo"
+            "image": "img-hly6zn9x"
         },
         "instance_class": {{cluster.client.instance_class}},
         "count": {{cluster.client.count}},
@@ -166,5 +166,13 @@
             "action_cmd": "/opt/fabric-samples/blockchain-explorer/client-action.sh"
         }
     }
-    ]
+    ],
+    "env": {
+        "client.server.port":{{env.client_server_port}},
+        "client.database.host":{{env.client_database_host}},
+        "client.database.port":{{env.client_database_port}},
+        "client.database.name":{{env.client_database_name}},
+        "client.database.user":{{env.client_database_user}},
+        "client.database.pwd":{{env.client_database_pwd}}
+    }
 }

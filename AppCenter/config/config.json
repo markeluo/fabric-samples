@@ -1,7 +1,6 @@
 {
   "type": "array",
-  "properties": [
-    {
+  "properties": [{
     "key": "cluster",
     "description": "fabric network release 1.0.0 cluster properties",
     "type": "array",
@@ -174,6 +173,52 @@
           "required": "yes"
       }]
     }]
-  }
-  ]
+  },{
+		"key": "env",
+		"description": "Application configuration properties",
+		"type": "array",
+		"properties": [{
+			"key": "client_server_port",
+			"label": "client.server.port",
+			"description": "The Client server port",
+			"type": "integer",
+			"default": 8080,
+			"required": "yes"
+		},{
+			"key": "client_database_host",
+			"label": "client.database.host",
+			"description": "The Client DataBase Host Address",
+			"type": "string",
+			"default": "127.0.0.1",
+			"required": "yes"
+		},{
+			"key": "client_database_port",
+			"label": "client.database.port",
+			"description": "The Client DataBase port",
+			"type": "integer",
+			"default": 5432,
+			"required": "yes"
+		},{
+			"key": "client_database_name",
+			"label": "client.database.name",
+			"description": "The Client DataBase name",
+			"type": "string",
+			"default": "fabricexplorer",
+			"required": "yes"
+		},{
+			"key": "client_database_user",
+			"label": "client.database.user",
+			"description": "The Client DataBase user name",
+			"type": "string",
+			"default": "root",
+			"required": "yes"
+		},{
+			"key": "client_database_pwd",
+			"label": "client.database.pwd",
+			"description": "The Client DataBase password",
+			"type": "string",
+			"default": "qingcloud1234",
+			"required": "yes"
+		}]
+	}]
 }
