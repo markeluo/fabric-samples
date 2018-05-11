@@ -1,10 +1,6 @@
 #!/bin/bash
+# Copyright yunify marke. All Rights Reserved.
 #
-# Copyright IBM Corp. All Rights Reserved.
-#
-# SPDX-License-Identifier: Apache-2.0
-#
-
 jq --version > /dev/null 2>&1
 if [ $? -ne 0 ]; then
 	echo "Please Install 'jq' https://stedolan.github.io/jq/ to execute this script"
@@ -44,7 +40,7 @@ curl -s -X POST \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json" \
   -d '{
-	"peers": ["peer0","peer1"]
+	"peers": [{{$peers := lsdir "/hosts/peer/"}}{{$peer_size := len $peers}}{{range $index,$dir := lsdir "/hosts/peer/"}}{{$mindex := sub (sub $peer_size $index) 1}}{{$sid := printf "/hosts/peer/%s/sid" $dir}}"peer{{sub (getv $sid) 1}}"{{if $mindex}},{{end}}{{end}}]
 }'
 echo
 echo
@@ -56,7 +52,7 @@ curl -s -X POST \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json" \
   -d '{
-	"peers": ["peer0","peer1"],
+	"peers": [{{$peers := lsdir "/hosts/peer/"}}{{$peer_size := len $peers}}{{range $index,$dir := lsdir "/hosts/peer/"}}{{$mindex := sub (sub $peer_size $index) 1}}{{$sid := printf "/hosts/peer/%s/sid" $dir}}"peer{{sub (getv $sid) 1}}"{{if $mindex}},{{end}}{{end}}],
 	"chaincodeName":"testcode",
 	"chaincodePath":"github.com/example_cc",
 	"chaincodeVersion":"1.0"
@@ -168,6 +164,5 @@ curl -s -X GET \
   -H "content-type: application/json"
 echo
 echo
-
 
 echo "Total execution time : $(($(date +%s)-starttime)) secs ..."

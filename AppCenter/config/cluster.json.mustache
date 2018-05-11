@@ -7,7 +7,7 @@
         "container": {
             "type": "kvm",
             "zone": "sh1a",
-            "image": "img-fx9r9x7x"
+            "image": "img-beru3mep"
         },
         "instance_class": {{cluster.orderer.instance_class}},
         "count": {{cluster.orderer.count}},
@@ -20,9 +20,6 @@
           "filesystem": "ext4"
         },
         "services": {
-            "init": {
-                "cmd": "systemctl restart rsyslog;mkdir -p /data/webapps;rsync -aqxP /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/ /data/webapps"
-            },
             "start": {
                 "order":1,
                 "cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/orderer-start.sh"
@@ -92,7 +89,7 @@
         "container": {
             "type": "kvm",
             "zone": "sh1a",
-            "image": "img-6zclq8hw"
+            "image": "img-wfn5g2hm"
         },
         "instance_class": {{cluster.peer.instance_class}},
         "count": {{cluster.peer.count}},
@@ -105,9 +102,6 @@
             "filesystem": "ext4"
         },
         "services": {
-            "init": {
-                "cmd": "systemctl restart rsyslog;mkdir -p /data/webapps;rsync -aqxP /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/ /data/webapps"
-            },
             "start": {
                 "order":2,
                 "cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/peer-start.sh"
@@ -136,7 +130,7 @@
         "container": {
             "type": "kvm",
             "zone": "sh1a",
-            "image": "img-bdmaqfiw"
+            "image": "img-w1y00rmo"
         },
         "instance_class": {{cluster.client.instance_class}},
         "count": {{cluster.client.count}},
@@ -149,9 +143,6 @@
             "filesystem": "ext4"
         },
         "services": {
-            "init": {
-                "cmd": "systemctl restart rsyslog;mkdir -p /data/webapps;rsync -aqxP /opt/fabric-samples/ /data/webapps"
-            },
             "start": {
                 "order":3,
                 "cmd": "/opt/fabric-samples/blockchain-explorer/client-start.sh"

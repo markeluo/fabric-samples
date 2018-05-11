@@ -1,5 +1,5 @@
 #!/bin/bash
-nodepid=`lsof -i:4000|awk '{print $2}'`
+nodepid=`lsof -i:8080|awk '{print $2}'`
 echo $nodepid
 if [ "$nodepid" != "" ]; then
     echo "client is running..........."

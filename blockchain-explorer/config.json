@@ -4,14 +4,20 @@
 			"name": "peerOrg1",
 			"mspid": "Org1MSP",
 			"peer0": {
-				"requests": "grpcs://192.168.0.12:7051",
-				"events": "grpcs://192.168.0.12:7053",
+				"requests": "grpcs://139.198.177.68:7051",
+				"events": "grpcs://139.198.177.68:7053",
 				"server-hostname": "peer0.org1.example.com",
-				"tls_cacerts": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+				"tls_cacerts": "/Users/luowanli/Downloads/fabric-config/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+			},
+			"peer1": {
+				"requests": "grpcs://139.198.177.68:8051",
+				"events": "grpcs://139.198.177.68:8053",
+				"server-hostname": "peer1.org1.example.com",
+				"tls_cacerts": "/Users/luowanli/Downloads/fabric-config/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
 			},
 			"admin": {
-				"key": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore",
-				"cert": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts"
+				"key": "/Users/luowanli/Downloads/fabric-config/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore",
+				"cert": "/Users/luowanli/Downloads/fabric-config/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts"
 			}
 		}
 	},
@@ -20,6 +26,12 @@
 	"channel": "mychannel",
 	"keyValueStore": "/tmp/fabric-client-kvs",
 	"eventWaitTime": "30000",
+	"users":[
+		{
+		   "username":"admin",
+		   "secret":"adminpw"
+		}
+	],
 	"pg": {
 		"host": "139.198.177.68",
 		"port": "5432",

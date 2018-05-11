@@ -1,0 +1,7 @@
+[template]
+  src = "client-init.sh.tmpl"
+  dest = "/opt/fabric-samples/blockchain-explorer/client-init.sh"
+  keys = [
+      "/",
+  ]
+reload_cmd = "/opt/fabric-samples/blockchain-explorer/client-restart.sh"

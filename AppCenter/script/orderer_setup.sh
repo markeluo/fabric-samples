@@ -1,10 +1,7 @@
 #!/bin/bash
 UP_DOWN="$1"
 COMPOSE_FILE=/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/docker-compose-orderer.yaml
-DOCKER_VERSION=`/usr/local/bin/docker-compose -version 2>&1 |awk 'NR==1{ gsub(/"/,""); print $3 }'`
-if [ "$DOCKER_VERSION" != "1.17.0," ]; then
-    sleep 2
-fi
+
 function printHelp () {
         echo "Usage: ./orderer_setup <up|down> arguments must be in order."
 }

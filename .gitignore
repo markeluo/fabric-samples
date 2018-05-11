@@ -8,10 +8,16 @@
 /bin
 .DS_Store
 .project
+.vscode
 
 first-network/channel-artifacts/*.tx
 first-network/channel-artifacts/*.block
 first-network/crypto-config/*
+
+blockchain-explorer/.vscode
+blockchain-explorer/node_modules/*
+blockchain-explorer/client/node_modules/*
+blockchain-explorer/app/test/node_modules/*
 
 chaincode-docker-devmode/myc.block
 chaincode-docker-devmode/chaincode/sacc/sacc
@@ -23,3 +29,4 @@ fabcar/node_modules/
 # balance transfer sample
 balance-transfer/.DS_Store
 balance-transfer/node_modules/*
+balance-transfer/artifacts/channel/*

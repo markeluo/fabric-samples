@@ -1,7 +1,7 @@
 #!/bin/bash
 pscount=`docker ps -q | wc -l`
 echo $pscount
-if [ "$pscount" = "2" ]; then
+if [ "$pscount"x = "2"x ]; then
     echo "orderer and ca is running..........."
     exit 0
 else

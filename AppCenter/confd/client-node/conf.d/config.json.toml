@@ -4,4 +4,4 @@
   keys = [
       "/",
   ]
-reload_cmd = "/opt/fabric-samples/blockchain-explorer/client-restart.sh"
+reload_cmd = ""

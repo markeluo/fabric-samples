@@ -1,7 +1,7 @@
 #!/bin/bash
 pscount=`docker ps -q | wc -l`
 echo $pscount
-if [ "$pscount" = "3" ]; then
+if [ "$pscount"x = "2"x ]; then
     echo "peer nodes is running..........."
     exit 0
 else

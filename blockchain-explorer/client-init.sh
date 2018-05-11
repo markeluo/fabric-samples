@@ -1,9 +1,3 @@
-#!/bin/bash
-#
-# Copyright IBM Corp. All Rights Reserved.
-#
-# SPDX-License-Identifier: Apache-2.0
-#
 
 jq --version > /dev/null 2>&1
 if [ $? -ne 0 ]; then
@@ -168,6 +162,5 @@ curl -s -X GET \
   -H "content-type: application/json"
 echo
 echo
-
 
 echo "Total execution time : $(($(date +%s)-starttime)) secs ..."
