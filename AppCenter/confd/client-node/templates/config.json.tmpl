@@ -18,16 +18,16 @@
 		}
 	},
 	"host": "localhost",
-	"port": "8080",
+	"port": {{getv "/env/client.server.port"}},
 	"channel": "mychannel",
 	"keyValueStore": "/tmp/fabric-client-kvs",
 	"eventWaitTime": "30000",
 	"pg": {
-		"host": "139.198.177.68",
-		"port": "5432",
-		"database": "fabricexplorer",
-		"username": "root",
-		"passwd": "qingcloud1234"
+		"host": "{{getv "/env/client.database.host"}}",
+		"port": {{getv "/env/client.database.port"}},
+		"database": "{{getv "/env/client.database.name"}}",
+		"username": "{{getv "/env/client.database.user"}}",
+		"passwd": "{{getv "/env/client.database.pwd"}}"
 	},
 	"license": "Apache-2.0"
 }

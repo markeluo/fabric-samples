@@ -7,5 +7,6 @@
 nodepid=`lsof -i:4000|awk '{print $2}'`
 echo $nodepid
 if [ "$nodepid" = "" ]; then
-    PORT=4000 node app >/dev/null 2>&1 &
+    cd /opt/fabric-samples/balance-transfer/
+    nohup node app.js > app.log 2>&1 &
 fi

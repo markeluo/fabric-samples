@@ -10,6 +10,7 @@ else
   echo "start node 4000 server..."
   sh /opt/fabric-samples/balance-transfer/client-start.sh
   sleep 2 && \
+  cd /opt/fabric-samples/blockchain-explorer/
   echo "start init blockchain..."
   sh /opt/fabric-samples/blockchain-explorer/client-init.sh
 fi
