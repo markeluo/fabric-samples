@@ -1,7 +1,3 @@
-/**
- *    SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { Component } from 'react';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
@@ -11,14 +7,10 @@ import Blocks from '../Lists/Blocks';
 import Transactions from '../Lists/Transactions';
 import DashboardView from '../View/DashboardView';
 import Channels from '../Lists/Channels';
-import Chaincodes from '../Lists/Chaincodes';
-import { getChaincodes as getChaincodesCreator } from '../../store/actions/chaincodes/action-creators';
 import { getBlockList as getBlockListCreator } from '../../store/actions/block/action-creators';
 import { getTransactionInfo as getTransactionInfoCreator } from '../../store/actions/transaction/action-creators';
 import { getLatestBlock as getLatestBlockCreator } from '../../store/actions/latestBlock/action-creators';
 import { getHeaderCount as getCountHeaderCreator } from '../../store/actions/header/action-creators';
-import { getTransactionList as getTransactionListCreator } from '../../store/actions/transactions/action-creators';
-
 
 import {
   Navbar,
@@ -49,7 +41,7 @@ class MenuBar extends Component {
     super(props);
     this.state = {
       activeView: 'DashboardView',
-      activeTab: { dashboardTab: true, peersTab: false, blocksTab: false, chaincodesTab: false },
+      activeTab: { dashboardTab: true, peersTab: false, blocksTab: false },
       countHeader: { countHeader: this.props.getCountHeader() }
     }
 
@@ -92,8 +84,8 @@ class MenuBar extends Component {
         dashboardTab: false,
         peersTab: false,
         blocksTab: false,
-        txTab: true,
-        chaincodesTab: false      }
+        txTab: true
+      }
     });
   }
   handleClickBlockView() {
@@ -103,8 +95,7 @@ class MenuBar extends Component {
         dashboardTab: false,
         peersTab: false,
         blocksTab: true,
-        txTab: false,
-        chaincodesTab: false
+        txTab: false
       }
     });
   }
@@ -118,8 +109,7 @@ class MenuBar extends Component {
         dashboardTab: false,
         peersTab: true,
         blocksTab: false,
-        txTab: false,
-        chaincodesTab: false
+        txTab: false
       }
     });
   }
@@ -130,20 +120,7 @@ class MenuBar extends Component {
         dashboardTab: true,
         peersTab: false,
         blocksTab: false,
-        txTab: false,
-        chaincodesTab: false
-      }
-    });
-  }
-  handleClickChaincodeView = () => {
-    this.setState({ activeView: 'ChaincodeView' });
-    this.setState({
-      activeTab: {
-        dashboardTab: false,
-        peersTab: false,
-        blocksTab: false,
-        txTab: false,
-        chaincodesTab: true
+        txTab: false
       }
     });
   }
@@ -153,10 +130,10 @@ class MenuBar extends Component {
 
     switch (this.state.activeView) {
       case 'TransactionView':
-        currentView = <Transactions channel={this.props.channel} countHeader={this.props.countHeader} transactionList={this.props.transactionList.rows} getTransactionList={this.props.getTransactionList} />;
+        currentView = <Transactions />;
         break;
       case 'BlockView':
-        currentView = <Blocks blockList={this.props.blockList} channel={this.props.channel} countHeader={this.props.countHeader} getBlockList={this.props.getBlockList}/>;
+        currentView = <Blocks />;
         break;
       case 'ChannelView':
         currentView = <Channels channelList={this.props.channelList} />;
@@ -166,9 +143,6 @@ class MenuBar extends Component {
         break;
       case 'DashboardView':
         currentView = <DashboardView />;
-        break;
-      case 'ChaincodeView':
-        currentView = <Chaincodes channel={this.props.channel} countHeader={this.props.countHeader} chaincodes={this.props.chaincodes} getChaincodes={this.props.getChaincodes}/>
         break;
       default:
         currentView = <DashboardView />;
@@ -184,13 +158,13 @@ class MenuBar extends Component {
               <NavItem active={this.state.activeTab.peersTab} onClick={this.handleClickPeerView}>NETWORK  </NavItem>
               <NavItem active={this.state.activeTab.blocksTab} onClick={this.handleClickBlockView}>BLOCKS </NavItem>
               <NavItem active={this.state.activeTab.txTab} onClick={this.handleClickTransactionView}>TRANSACTIONS</NavItem>
-              <NavItem active={this.state.activeTab.chaincodesTab} onClick={this.handleClickChaincodeView }>CHAINCODES</NavItem>
+              <NavItem >CHAINCODES</NavItem>
             </Nav>
           </Navbar>
         </div>
 
 
-        <div style={{ position: 'absolute', top: 140, left: 30, zIndex: 1000 }}>
+        <div style={{ position: 'absolute', top: 190, left: 30, zIndex: 1000 }}>
           {currentView}
         </div>
       </div>
@@ -199,25 +173,22 @@ class MenuBar extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getBlockList: (channel,offset) => dispatch(getBlockListCreator(channel,offset)),
-  getChaincodes: (channel,offset) => dispatch(getChaincodesCreator(channel,offset)),
   getCountHeader: (curChannel) => dispatch(getCountHeaderCreator(curChannel)),
   getLatestBlock: (curChannel) => dispatch(getLatestBlockCreator(curChannel)),
-  getTransactionInfo: (tx_id) => dispatch(getTransactionInfoCreator(tx_id)),
-  getTransactionList: (curChannel,offset) => dispatch(getTransactionListCreator(curChannel,offset))
+  getBlockList: (channel,offset) => dispatch(getBlockListCreator(channel,offset)),
+  getTransactionInfo: (tx_id) => dispatch(getTransactionInfoCreator(tx_id))
 });
 
 
 const mapStateToProps = state => ({
-  block: state.block.block,
-  blockList: state.blockList.blockList,
-  chaincodes: state.chaincodes.chaincodes,
-  channel: state.channel.channel,
-  channelList: state.channelList.channelList,
-  countHeader: state.countHeader.countHeader,
+  countHeader: state.countHeader,
   peerList: state.peerList.peerList,
-  transaction: state.transaction.transaction,
+  blockList: state.blockList.blockList,
   transactionList: state.transactionList.transactionList,
+  channelList: state.channelList.channelList,
+  block: state.block.block,
+  transaction: state.transaction.transaction,
+  channel: state.channel.channel
 });
 
 

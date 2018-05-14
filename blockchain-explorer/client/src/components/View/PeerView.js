@@ -1,7 +1,3 @@
-/**
- *    SPDX-License-Identifier: Apache-2.0
- */
-
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';

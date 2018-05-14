@@ -1,6 +1,3 @@
-/**
- *    SPDX-License-Identifier: Apache-2.0
- */
 
 import config from 'react-global-configuration';
 

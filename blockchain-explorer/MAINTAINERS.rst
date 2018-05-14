@@ -1,26 +1,26 @@
---
---    SPDX-License-Identifier: Apache-2.0
---
-
 Maintainers
 -----------
 
 +---------------------------+---------------------+------------------+----------------+--------------------------------+
 | Name                      | Gerrit              | GitHub           | RocketChat     | email                          |
 +===========================+=====================+==================+================+================================+
-| Adam Kwan                 | adamk1230           | adamk1230        | adamk1230      | adamk1230@gmail.com            |
-+---------------------------+---------------------+------------------+----------------+--------------------------------+
 | David Huffman             | dshuffma            |                  |                | dshuffma@us.ibm.com            |
 +---------------------------+---------------------+------------------+----------------+--------------------------------+
-| Jeeva Sankarapandian      | jeevas              | jeevasang        | jeevas         | jsankarapandian@dtcc.com       |
+| Jeeva Sankarapandian      | jeevas              |                  |                | jsankarapandian@dtcc.com       |
 +---------------------------+---------------------+------------------+----------------+--------------------------------+
-| Mekia Edwards             | edwardsm26          | edwardsm26       | edwardsm26     | dev.edwardsm@gmail.com         |
+| Jason Stollings           | jstollings          |                  |                | jstollings@yahoo.com           |
 +---------------------------+---------------------+------------------+----------------+--------------------------------+
-| Nik Frunza                | nfrunza             | nickfrunza       | nfrunza        | nfrunza@gmail.com              |
+| Mahesh Gutala             | mgutala             |                  |                | mgutala@dtcc.com               |
 +---------------------------+---------------------+------------------+----------------+--------------------------------+
-| Satheesh Kathamuthu       | satheeshk           | xspeedcruiser    | satheeshk      | satheesh.ceg@gmail.com         |
+| Navaneethan Venugopal     | nvenugopal          |                  |                | nvenugopal1@dtcc.com           |
 +---------------------------+---------------------+------------------+----------------+--------------------------------+
-| Umapathi Madiraju         | umadiraj            | umadiraju        | umadiraj       | umapathi.madiraju@gmail.com    |
+| Piotr Czerniawski         | piotrc              |                  |                | pczerniawski1@gmail.com        |
 +---------------------------+---------------------+------------------+----------------+--------------------------------+
-| Vinita Chinoy             | vchinoy             | vchinoy-da       | vchinoy        | vinitachinoy@yahoo.com         |
+| Satheesh Kathamuthu       | satheeshk           |                  |                | satheesh.ceg@gmail.com         |
++---------------------------+---------------------+------------------+----------------+--------------------------------+
+| Svetlana Fleishman        | sfleishman          |                  |                | sfleishman@dtcc.com            |
++---------------------------+---------------------+------------------+----------------+--------------------------------+
+| Thomas Martin             | tmartin             |                  |                | tmartin001@gmail.com           |
++---------------------------+---------------------+------------------+----------------+--------------------------------+
+| Raynaldo Ruiz             | tumbleleaf          |                  |                | rruiz@dtcc.com                 |
 +---------------------------+---------------------+------------------+----------------+--------------------------------+

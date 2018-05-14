@@ -1,7 +1,3 @@
-/**
- *    SPDX-License-Identifier: Apache-2.0
- */
-
 import { createAction } from 'redux-actions'
 import * as actionTypes from '../action-types'
 import { post } from '../../../services/request.js';

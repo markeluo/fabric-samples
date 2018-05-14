@@ -16,8 +16,6 @@ var bodyParser = require('body-parser');
 var helper = require('./app/helper');
 var requtil = require('./app/utils/requestutils.js')
 var logger = helper.getLogger('main');
-var txModel = require('./app/models/transactions.js')
-var blocksModel = require('./app/models/blocks.js')
 
 require('./app/socket/websocketserver.js')(http)
 
@@ -192,16 +190,27 @@ app.get("/api/transaction/:channel/:txid", function (req, res) {
     let txid = req.params.txid
     let channelName = req.params.channel
     if (txid && txid != '0' && channelName) {
-        txModel.getTransactionByID(channelName, txid).then(rows => {
-            if (rows) {
-                return res.send({ status: 200, rows })
-            }
+        query.getTransactionByID(peer, channelName, txid, org).then(response_payloads => {
+            var header = response_payloads['transactionEnvelope']['payload']['header']
+            var data = response_payloads['transactionEnvelope']['payload']['data']
+            var signature = response_payloads['transactionEnvelope']['signature'].toString("hex")
+
+            res.send({
+                status: 200,
+                'validation_code': response_payloads['validationCode'],
+                'tx_id': header.channel_header.tx_id,
+                'timestamp': header.channel_header.timestamp,
+                'channel_id': header.channel_header.channel_id,
+                'type': header.channel_header.type,
+                'creator_msp': header.signature_header.creator.Mspid,
+                'chaincode_id': String.fromCharCode.apply(null, new Uint8Array(header.channel_header.extension)),
+            })
         })
+
     } else {
         return requtil.invalidRequest(req, res)
     }
 });
-
 
 /***
 Transaction list
@@ -225,7 +234,7 @@ app.get("/api/txList/:channel/:blocknum/:txid/:limitrows/:offset", function (req
         txid = 0;
     }
     if (channelName && !isNaN(limitRows)) {
-        txModel.getTxList(channelName, blockNum, txid, limitRows, offset)
+        statusMetrics.getTxList(channelName, blockNum, txid, limitRows, offset)
             .then(rows => {
                 if (rows) {
                     return res.send({ status: 200, rows })
@@ -235,6 +244,8 @@ app.get("/api/txList/:channel/:blocknum/:txid/:limitrows/:offset", function (req
         return requtil.invalidRequest(req, res)
     }
 });
+
+
 
 
 /***Peer List
@@ -307,7 +318,7 @@ app.get("/api/blockAndTxList/:channel/:blocknum/:limitrows/:offset", function (r
         offSet = 0;
     }
     if (channelName && !isNaN(blockNum) && !isNaN(limitRows)) {
-        blocksModel.getBlockAndTxList(channelName, blockNum, limitRows, offSet)
+        statusMetrics.getBlockAndTxList(channelName, blockNum, limitRows, offSet)
             .then(rows => {
                 if (rows) {
                     return res.send({ status: 200, rows })

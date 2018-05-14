@@ -2,10 +2,10 @@
 --    SPDX-License-Identifier: Apache-2.0
 --
 
-CREATE USER root with password 'qingcloud1234';
+CREATE USER hppoc with password 'password';
 DROP DATABASE IF EXISTS fabricexplorer;
-CREATE DATABASE fabricexplorer owner root;
-use fabricexplorer;
+CREATE DATABASE fabricexplorer owner hppoc;
+\c fabricexplorer;
 --
 
 -- ----------------------------
@@ -23,7 +23,7 @@ CREATE TABLE blocks (
   createdt Timestamp DEFAULT NULL
 );
 
-ALTER table blocks owner to root;
+ALTER table blocks owner to hppoc;
 
 -- ----------------------------
 --  Table structure for `chaincodes`
@@ -40,7 +40,7 @@ CREATE TABLE chaincodes (
   createdt Timestamp DEFAULT NULL
 );
 
-ALTER table chaincodes owner to root;
+ALTER table chaincodes owner to hppoc;
 Alter sequence chaincodes_id_seq restart with 10;
 -- ----------------------------
 --  Table structure for `channel`
@@ -57,7 +57,7 @@ CREATE TABLE channel (
   createdt Timestamp DEFAULT NULL
 );
 
-ALTER table channel owner to root;
+ALTER table channel owner to hppoc;
 Alter sequence channel_id_seq restart with 3;
 -- ----------------------------
 --  Table structure for `peer`
@@ -76,7 +76,7 @@ CREATE TABLE peer (
   server_hostname varchar(64) DEFAULT NULL,
   createdt timestamp DEFAULT NULL
 );
-ALTER table peer owner to root;
+ALTER table peer owner to hppoc;
 -- ---------------------------
 --  Table structure for `peer_ref_channel`
 -- ----------------------------
@@ -88,7 +88,7 @@ CREATE TABLE peer_ref_channel (
   channelid integer DEFAULT NULL,
   createdt Timestamp DEFAULT NULL
 );
-ALTER table peer_ref_channel owner to root;
+ALTER table peer_ref_channel owner to hppoc;
 -- ----------------------------
 --  Table structure for `transaction`
 -- ----------------------------
@@ -102,7 +102,7 @@ CREATE TABLE transaction (
   chaincodename character varying(255) DEFAULT NULL
   );
 
-ALTER table transaction owner to root;
+ALTER table transaction owner to hppoc;
 Alter sequence transaction_id_seq restart with 6;
 
 DROP TABLE IF EXISTS write_lock;
@@ -110,8 +110,8 @@ CREATE TABLE write_lock (
   write_lock SERIAl PRIMARY KEY
 );
 
-ALTER table write_lock owner to root;
+ALTER table write_lock owner to hppoc;
 Alter sequence write_lock_write_lock_seq restart with 2;
 
-GRANT SELECT, INSERT, UPDATE,DELETE ON ALL TABLES IN SCHEMA PUBLIC to root;
+GRANT SELECT, INSERT, UPDATE,DELETE ON ALL TABLES IN SCHEMA PUBLIC to hppoc;
 

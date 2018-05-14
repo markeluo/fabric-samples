@@ -31,8 +31,8 @@
 	"port": "8080",
 	"channel": "mychannel",
 	"jwt_expiretime": "36000",
-   "channelName":"mychannel",
-   "CC_SRC_PATH":"../artifacts",
+   	"channelName":"mychannel",
+   	"CC_SRC_PATH":"../artifacts",
 	"keyValueStore": "/tmp/fabric-client-kvs",
 	"eventWaitTime": "30000",
 	"admins":[

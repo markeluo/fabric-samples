@@ -1,7 +1,3 @@
-#
-#    SPDX-License-Identifier: Apache-2.0
-#
-
 #!/bin/bash
 
 while [ 1 ];do
