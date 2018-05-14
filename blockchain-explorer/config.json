@@ -15,6 +15,12 @@
 				"server-hostname": "peer1.org1.example.com",
 				"tls_cacerts": "/Users/luowanli/Downloads/fabric-config/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
 			},
+			"peer2": {
+				"requests": "grpcs://139.198.177.68:9051",
+				"events": "grpcs://139.198.177.68:9053",
+				"server-hostname": "peer2.org1.example.com",
+				"tls_cacerts": "/Users/luowanli/Downloads/fabric-config/crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/tls/ca.crt"
+			},
 			"admin": {
 				"key": "/Users/luowanli/Downloads/fabric-config/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore",
 				"cert": "/Users/luowanli/Downloads/fabric-config/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts"
@@ -24,8 +30,17 @@
 	"host": "localhost",
 	"port": "8080",
 	"channel": "mychannel",
+	"jwt_expiretime": "36000",
+   "channelName":"mychannel",
+   "CC_SRC_PATH":"../artifacts",
 	"keyValueStore": "/tmp/fabric-client-kvs",
 	"eventWaitTime": "30000",
+	"admins":[
+		{
+			"username":"admin",
+			"secret":"adminpw"
+		}
+	],
 	"users":[
 		{
 		   "username":"admin",
