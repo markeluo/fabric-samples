@@ -2,7 +2,6 @@
   "name": "hyperledger-explorer-client",
   "version": "0.3.0",
   "private": true,
-  "license": "Apache-2.0",
   "dependencies": {
     "ajv": "^6.2.0",
     "aphrodite": "^1.2.5",

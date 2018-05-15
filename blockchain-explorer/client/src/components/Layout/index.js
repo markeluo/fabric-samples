@@ -1,7 +1,3 @@
-/**
- *    SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { Component } from 'react';
 import MenuBar from '../CountHeader/MenuBar';
 class Layout extends Component {

@@ -1,7 +1,3 @@
-/**
- *    SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { Component } from 'react';
 import { Timeline, TimelineEvent } from 'react-event-timeline'
 import FontAwesome from 'react-fontawesome';
