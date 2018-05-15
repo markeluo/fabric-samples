@@ -1,8 +1,4 @@
-/**
- *    SPDX-License-Identifier: Apache-2.0
- */
-
- import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import Card, { CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';

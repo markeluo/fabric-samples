@@ -1,7 +1,3 @@
-/**
- *    SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { Component } from 'react';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
@@ -38,7 +34,7 @@ class PeerGraph extends Component {
                     fontSize: 10,
                     fontWeight: "bold",
                     labelProperty: "id",
-                    color: '#5bc5c2',
+                    color: '#0353A4',
                     size: 200
                 },
                 links: {

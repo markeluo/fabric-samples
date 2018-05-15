@@ -1,8 +1,4 @@
 /**
- *    SPDX-License-Identifier: Apache-2.0
- */
-
-/**
  * Component to display current date with an interval of 1 second
  */
 
