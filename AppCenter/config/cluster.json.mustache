@@ -20,6 +20,9 @@
           "filesystem": "ext4"
         },
         "services": {
+            "init": {
+                "cmd": "systemctl restart rsyslog;mkdir -p /data/webapps;rsync -aqxP /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/ /data/webapps"
+            },
             "start": {
                 "order":1,
                 "cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/orderer-start.sh"
@@ -102,6 +105,9 @@
             "filesystem": "ext4"
         },
         "services": {
+            "init": {
+                "cmd": "systemctl restart rsyslog;mkdir -p /data/webapps;rsync -aqxP /root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/ /data/webapps"
+            },
             "start": {
                 "order":2,
                 "cmd": "/root/gopath/src/github.com/hyperledger/fabric/examples/e2e_cli/peer-start.sh"
@@ -130,7 +136,7 @@
         "container": {
             "type": "kvm",
             "zone": "sh1a",
-            "image": "img-orvkb2zn"
+            "image": "img-sqmd06gc"
         },
         "instance_class": {{cluster.client.instance_class}},
         "count": {{cluster.client.count}},
